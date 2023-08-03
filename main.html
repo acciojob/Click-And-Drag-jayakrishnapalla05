@@ -36,6 +36,33 @@
 
 <script>
 //Your code goes here 
+	let isDragging = false
+let startX ;
+	let startScrollLeft;
+
+const dragStart = (e)=>{
+	isDragging = true
+	//record the initial container and scroll position of container
+	startX = e.pageX
+	startScrollLeft = container.scrollLeft
+}
+
+	const dragging = (e)=>{
+	if(!isDragging)
+			return           //if dragging is false return from here
+	//update the scroll position of containe based on containe movement
+		container.scrollLeft = startScrollLeft - (e.pageX - startX)
+}
+
+	const dragStop =()=>{
+		isDragging = false;
+	}
+
+container.addEventListener("mousedown",dragStart)
+container.addEventListener("mousemove",dragging)
+	container.addEventListener("mouseup",dragStop)
+
+
 </script>
 
   </body>
